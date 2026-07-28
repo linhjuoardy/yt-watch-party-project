@@ -310,6 +310,9 @@ if (!user) return;
 const room = rooms.get(user.roomCode);
 
 if (room) {
+    room.chat.push(leaveMessage);
+    io.to(user.roomCode).emit("new-message", leaveMessage);
+
 
     room.participants =
         room.participants.filter(
