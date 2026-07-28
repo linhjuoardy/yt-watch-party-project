@@ -1,7 +1,8 @@
 export interface Participant {
     socketId: string;
     username: string;
-    role: "host" | "moderator" | "viewer";
+ 
+    role: "host" | "participant";
 }
 
 export interface ChatMessage {
