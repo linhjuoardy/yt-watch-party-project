@@ -117,7 +117,7 @@ const username =
     
 
         socket.emit("join-room", {
-            roomCode: roomId ?? mockRoom.roomCode,
+            roomCode: roomId!,
             username,
         });
         socket.on("kicked", () => {
@@ -140,17 +140,17 @@ const username =
 
     return (
         <Page>
-            <RoomHeader roomCode={roomId ?? mockRoom.roomCode} />
+            <RoomHeader roomCode={roomId!} />
 
             <HostControls
-    roomCode={roomId ?? mockRoom.roomCode}
+    roomCode={roomId!}
 />
 
             <div className="room-layout">
                 <div>
                     <YouTubePlayer
     ref={playerRef}
-    roomCode={roomId ?? mockRoom.roomCode}
+    roomCode={roomId!}
     videoId={roomState.videoId}
 />
                 </div>
@@ -158,14 +158,14 @@ const username =
                 <div className="room-sidebar">
                     <ParticipantPanel
     participants={participants}
-    roomCode={roomId ?? mockRoom.roomCode}
-    currentUserId={socket.id}
+    roomCode={roomId!}
+    currentUserId={socket.id ?? ""}
 />
 
                     
 
                     <ChatPanel
-                        roomCode={roomId ?? mockRoom.roomCode}
+                        roomCode={roomId!}
                         messages={messages}
                     />
                 </div>

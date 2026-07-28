@@ -48,7 +48,7 @@ io.to(roomCode).emit("new-message", joinMessage);
     room.participants.push({
     socketId: socket.id,
 
-    userId: socket.id,
+    
 
     username,
 

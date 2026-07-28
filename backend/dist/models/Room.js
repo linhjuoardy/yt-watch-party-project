@@ -15,6 +15,18 @@ const roomSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
+    currentTime: {
+        type: Number,
+        default: 0,
+    },
+    isPlaying: {
+        type: Boolean,
+        default: false,
+    },
+    updatedAtPlayback: {
+        type: Date,
+        default: Date.now,
+    },
 }, {
     timestamps: true,
 });

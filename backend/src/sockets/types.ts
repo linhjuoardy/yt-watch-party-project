@@ -3,5 +3,5 @@ export interface ConnectedUser {
     userId: string;
     username: string;
     roomCode: string;
-    role: "host" | "moderator" | "viewer";
+    role: "host" | "participant";
 }
