@@ -13,7 +13,7 @@ export interface ChatMessage {
 }
 
 export interface RoomState {
-    roomId: roomCode;
+    roomId: string;
 
     hostId: string;
 
