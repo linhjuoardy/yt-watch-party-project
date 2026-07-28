@@ -12,8 +12,6 @@ A real-time watch party application that enables multiple users to watch YouTube
 
 **Backend API:** `https://yt-watch-party-project-1.onrender.com/`
 
-**Github Repo:**  `https://github.com/linhjuoardy/yt-watch-party-project`
-
 ---
 
 ## Features
