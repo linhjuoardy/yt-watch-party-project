@@ -303,50 +303,43 @@ socket.on("send-message", ({ roomCode, username, message }) => {
 });
   socket.on("disconnect", () => {
 
-const user = users.get(socket.id);
+    const user = users.get(socket.id);
 
-if (!user) return;
+    if (!user) return;
 
-const room = rooms.get(user.roomCode);
+    const room = rooms.get(user.roomCode);
 
-if (room) {
-    room.chat.push(leaveMessage);
-    io.to(user.roomCode).emit("new-message", leaveMessage);
+    const leaveMessage = {
+        id: Date.now().toString(),
+        username: "System",
+        message: `${user.username} left the room`,
+        timestamp: Date.now(),
+        system: true,
+    };
 
+    if (room) {
 
-    room.participants =
-        room.participants.filter(
+        room.chat.push(leaveMessage);
+
+        io.to(user.roomCode).emit("new-message", leaveMessage);
+
+        room.participants = room.participants.filter(
             p => p.socketId !== socket.id
         );
 
-    io.to(user.roomCode).emit(
-        "participants",
-        room.participants
-    );
+        io.to(user.roomCode).emit(
+            "participants",
+            room.participants
+        );
 
-    if (room.participants.length === 0) {
-
-        rooms.delete(user.roomCode);
-
+        if (room.participants.length === 0) {
+            rooms.delete(user.roomCode);
+        }
     }
 
-}
+    users.delete(socket.id);
 
-const leaveMessage = {
-    id: Date.now().toString(),
-    username: "System",
-    message: `${user.username} left the room`,
-    timestamp: Date.now(),
-    system: true,
-};
-
-room.chat.push(leaveMessage);
-
-io.to(user.roomCode).emit("new-message", leaveMessage);
-users.delete(socket.id);
-
-  });
-
+});
 
 
 }
